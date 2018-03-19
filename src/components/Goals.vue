@@ -20,7 +20,9 @@
         </form>
       </div>
       <div class="col">
-        <p class="life-container" v-for="(data, index) in goals" :key='index' v-on:click="removeGoal(index)">{{ data.goal }}</p>
+        <transition-group name="list" enter-active-class="animate zoomIn" leave-active-class="animate zoomOut">
+          <p class="life-container" v-for="(data, index) in goals" :key='index' v-on:click="removeGoal(index)">{{ data.goal }}</p>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -56,6 +58,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "http://cdn.jsdelivr.net/npm/animate.css@3.5.1";
   .container {
       display: grid;
       grid-template-columns: 50% auto;
