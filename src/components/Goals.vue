@@ -20,7 +20,7 @@
         </form>
       </div>
       <div class="col">
-        <p class="life-container" v-for="(data, index) in goals" :key='index'>{{ data.goal }}</p>
+        <p class="life-container" v-for="(data, index) in goals" :key='index' v-on:click="removeGoal(index)">{{ data.goal }}</p>
       </div>
     </div>
   </div>
@@ -46,6 +46,9 @@ export default {
           this.goal = '';          
         }
       })
+    },
+    removeGoal(i) {
+      this.goals.splice(i, 1);
     }
   }
 }
@@ -53,39 +56,57 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-    display: grid;
-    grid-template-columns: 50% auto;
-}
-.col {
-    padding: .4em 1.3em;
-}
-.color-dark {
-    background: #2885C4;
-}
-.color-light {
-    background: #57B3F1;
-}
-input.txt {
-    border: 0;
-    padding: 1em;
-    width: 80%;
-    margin-bottom: 2em;
-}
-input.btn {
-    border: 0;
-    display:block;
-    padding:1em 3em;
-    background: #A5F883;
-    color:#003A61;
-    margin-bottom:1em;
-    cursor:pointer;
-}
-.life-container {
-    background: #3FA0E1;
-    padding: 1em;
-    font-weight: bold;
-    cursor: pointer;
+  .container {
+      display: grid;
+      grid-template-columns: 50% auto;
+  }
+  .col {
+      padding: .4em 1.3em;
+  }
+  .color-dark {
+      background: #2885C4;
+  }
+  .color-light {
+      background: #57B3F1;
+  }
+  input.txt {
+      border: 0;
+      padding: 1em;
+      width: 80%;
+      margin-bottom: 2em;
+  }
+  input.btn {
+      border: 0;
+      display:block;
+      padding:1em 3em;
+      background: #A5F883;
+      color:#003A61;
+      margin-bottom:1em;
+      cursor:pointer;
+  }
+  .life-container {
+      background: #3FA0E1;
+      padding: 1em;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .goal-in-enter-active {
+    animation: bounce-in .5s;
+  }
+  .goal-in-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 </style>
