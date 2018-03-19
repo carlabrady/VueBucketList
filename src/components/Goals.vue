@@ -14,12 +14,13 @@
         <p class="sm">Use this form to add a goal</p>
 
         <form>
-          <input type="text" class="txt" name="item" placeholder="Life goal...">
-          <input type="submit" class="btn" value="btnText">      
+          <input type="text" class="txt" name="item" placeholder="Life goal..." v-model="goal">
+          <p>{{ goal }}</p>
+          <input type="submit" class="btn" value="submit" v-on:click.prevent="addGoal()">      
         </form>
       </div>
       <div class="col">
-        <p class="life-container" v-for="(data, index) in skills" :key='index'>{{ data.skill }}</p>
+        <p class="life-container" v-for="(data, index) in goals" :key='index'>{{ data.goal }}</p>
       </div>
     </div>
   </div>
@@ -27,13 +28,20 @@
 
 <script>
 export default {
-  name: 'Skills',
+  name: 'Goals',
   data() {
     return {
-      skills: [
-        { "skill": "Vue.js" },
-        { "skill": "Frontend Developer" }
+      goal: '',
+      goals: [
+        { "goal": "Master Vue.js" },
+        { "goal": "Run a marathon" }
       ]
+    }
+  },
+  methods: {
+    addGoal() {
+      this.goals.push({goal: this.goal})
+      this.goal = '';
     }
   }
 }
