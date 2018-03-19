@@ -14,9 +14,9 @@
         <p class="sm">Use this form to add a goal</p>
 
         <form>
-          <input type="text" class="txt" name="item" placeholder="Life goal..." v-model="goal">
-          <p>{{ goal }}</p>
-          <input type="submit" class="btn" value="submit" v-on:click.prevent="addGoal()">      
+          <input type="text" class="txt" name="item" placeholder="Life goal..." v-model="goal" v-validate="'min:5'">
+          <p class="alert" v-if="errors.has('item')">{{ errors.first('item') }}</p>      
+          <input v-else type="submit" class="btn" value="submit" v-on:click.prevent="addGoal()">
         </form>
       </div>
       <div class="col">
@@ -40,8 +40,12 @@ export default {
   },
   methods: {
     addGoal() {
-      this.goals.push({goal: this.goal})
-      this.goal = '';
+      this.$validator.validateAll().then((res) => {
+        if (res) {
+          this.goals.push({goal: this.goal})
+          this.goal = '';          
+        }
+      })
     }
   }
 }
