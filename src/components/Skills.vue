@@ -1,12 +1,26 @@
 <template>
   <div class="hello">
-    <div class="holder">
-      <ul>
-        <li v-for="(data, index) in skills" :key='index'>{{ index }}. {{ data.skill }}</li>
-      </ul>
+    <div class="container color-dark">
+      <div class="col">
+        <p>Add a bucket list item</p>
+      </div>
+      <div class="col">
+        <p>Your bucket list</p>
+      </div>
+    </div>
 
-      <p v-if="skills.length >= 1">You have 1 or more skills</p>
-      <p v-else>You have zero skills</p>
+    <div class="container color-light">
+      <div class="col">
+        <p class="sm">Use this form to add a goal</p>
+
+        <form>
+          <input type="text" class="txt" name="item" placeholder="Life goal...">
+          <input type="submit" class="btn" value="btnText">      
+        </form>
+      </div>
+      <div class="col">
+        <p class="life-container" v-for="(data, index) in skills" :key='index'>{{ data.skill }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -27,18 +41,39 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+    display: grid;
+    grid-template-columns: 50% auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.col {
+    padding: .4em 1.3em;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.color-dark {
+    background: #2885C4;
 }
-a {
-  color: #42b983;
+.color-light {
+    background: #57B3F1;
 }
+input.txt {
+    border: 0;
+    padding: 1em;
+    width: 80%;
+    margin-bottom: 2em;
+}
+input.btn {
+    border: 0;
+    display:block;
+    padding:1em 3em;
+    background: #A5F883;
+    color:#003A61;
+    margin-bottom:1em;
+    cursor:pointer;
+}
+.life-container {
+    background: #3FA0E1;
+    padding: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 </style>
