@@ -20,7 +20,7 @@
         </form>
       </div>
       <div class="col">
-        <transition-group name="list" enter-active-class="animate zoomIn" leave-active-class="animate zoomOut">
+        <transition-group name="list" tag="p">
           <p class="life-container" v-for="(data, index) in goals" :key='index' v-on:click="removeGoal(index)">{{ data.goal }}</p>
         </transition-group>
       </div>
@@ -93,10 +93,10 @@ export default {
       font-weight: bold;
       cursor: pointer;
   }
-  .goal-in-enter-active {
+  .list-enter-active {
     animation: bounce-in .5s;
   }
-  .goal-in-leave-active {
+  .list-leave-active {
     animation: bounce-in .5s reverse;
   }
 
