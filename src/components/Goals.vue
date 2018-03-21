@@ -21,7 +21,11 @@
       </div>
       <div class="col">
         <transition-group name="list" tag="p">
-          <p class="life-container" v-for="(data, index) in goals" :key='index' v-on:click="removeGoal(index)">{{ data.goal }}</p>
+          <p class="life-container" 
+            v-for="(data, index) in goals" :key='index' 
+            v-on:click="removeGoal(index)">
+            {{ data.goal }}
+          </p>
         </transition-group>
       </div>
     </div>
